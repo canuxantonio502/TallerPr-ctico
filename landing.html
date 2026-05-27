@@ -146,11 +146,42 @@
 
     </main>
 
+    <div id="register-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-modal" class="btn-close" aria-label="Cerrar">&times;</button>
+            <h3 class="modal-title">Únete a EduTrack</h3>
+            <p class="modal-description">Déjanos tus datos y te avisaremos en cuanto abramos nuevos cupos.</p>
+            <form id="register-form" class="register-form">
+                <div class="form-group">
+                    <label for="reg-name" class="form-label">Nombre completo</label>
+                    <input type="text" id="reg-name" class="form-input" required placeholder="Ej. Carlos Mendoza">
+                </div>
+                <div class="form-group">
+                    <label for="reg-email" class="form-label">Correo electrónico</label>
+                    <input type="email" id="reg-email" class="form-input" required placeholder="tu@correo.com">
+                </div>
+                <button type="submit" class="btn-primary form-submit">Completar Registro</button>
+            </form>
+        </div>
+    </div>
+
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-brand-info">
                 <img src="https://placehold.co/120x40?text=EduTrack" alt="EduTrack Logo" class="footer-logo">
                 <p class="footer-tagline">Formando el talento tecnológico del futuro en Guatemala.</p>
+                
+                <div class="footer-socials">
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                </div>
             </div>
             <div class="footer-nav-wrapper">
                 <nav class="footer-nav">
@@ -167,5 +198,7 @@
         </div>
     </footer>
     <a href="#" class="whatsapp-float" aria-label="Chat en WhatsApp"></a>
+
+    <script src="app.js"></script>
 </body>
 </html>
