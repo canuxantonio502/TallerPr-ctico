@@ -341,6 +341,12 @@ ul {
     text-align: center;
 }
 
+.benefit-card:hover {
+    box-shadow: var(--shadow-md);
+    scale: 1.05;
+    transition: 0.4s;
+}
+
 .benefit-icon-wrapper {
     width: 64px;
     height: 64px;

@@ -1,0 +1,557 @@
+/* =========================================
+   1. VARIABLES & RESET (Exclusivas del App)
+   ========================================= */
+   :root {
+    --primary-dark: #0F172A;
+    --accent-green: #10B981;
+    --bg-app: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --text-main: #334155;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+    
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --sidebar-width: 240px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   2. APP BAR MÓVIL (Solo Mobile)
+   ========================================= */
+.mobile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--primary-dark);
+    cursor: pointer;
+    display: flex;
+}
+
+.mobile-brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+}
+
+.mobile-spacer {
+    width: 24px; /* Mismo ancho que el icono para centrar el texto */
+}
+
+/* =========================================
+   3. LAYOUT PRINCIPAL & OVERLAY
+   ========================================= */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.5);
+    z-index: 45;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.sidebar-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================================
+   4. SIDEBAR IZQUIERDO
+   ========================================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    transform: translateX(-100%); /* Oculto por defecto en móvil */
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.is-open {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.close-btn-mobile {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+/* Navegación del Sidebar */
+.sidebar-nav {
+    flex: 1; /* Ocupa el espacio disponible */
+    padding: 1rem 0;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    border-left: 3px solid transparent; /* Para el estado activo */
+}
+
+.nav-link:hover {
+    background-color: #F1F5F9;
+    color: var(--primary-dark);
+}
+
+.nav-item.active .nav-link {
+    color: var(--accent-green);
+    background-color: rgba(16, 185, 129, 0.05);
+    border-left-color: var(--accent-green);
+}
+
+/* Footer del Sidebar (Usuario) */
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    border-radius: 50%;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.user-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    color: #EF4444; /* Rojo para advertir salida */
+}
+
+/* =========================================
+   5. ÁREA PRINCIPAL & TARJETAS
+   ========================================= */
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.content-header {
+    margin-bottom: 2rem;
+}
+
+.greeting {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.25rem;
+}
+
+.greeting-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Grid de Tarjetas (Reutilizado del paso anterior) */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-wrapper {
+    width: 40px;
+    height: 40px;
+    background-color: #F1F5F9;
+    color: var(--primary-dark);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-title {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    line-height: 1;
+}
+
+.stat-date {
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.25rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--accent-green);
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+}
+
+.stat-variation {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.stat-variation.positive { color: var(--accent-green); }
+.stat-variation.neutral { color: var(--text-muted); }
+
+/* =========================================
+   6. MEDIA QUERIES (Desktop)
+   ========================================= */
+@media screen and (min-width: 1024px) {
+    .mobile-topbar {
+        display: none; /* Ocultamos la barra móvil */
+    }
+
+    .close-btn-mobile {
+        display: none; /* Ocultamos el botón de cerrar en el sidebar */
+    }
+
+    .sidebar {
+        transform: translateX(0); /* Sidebar siempre visible */
+    }
+
+    .main-content {
+        margin-left: var(--sidebar-width); /* Empujamos el contenido a la derecha */
+        padding: 2.5rem 3rem; /* Más espacio para respirar en desktop */
+    }
+
+    .greeting {
+        font-size: 2rem;
+    }
+}
+
+/* =========================================
+   7. TABLA DE CURSOS (Responsive)
+   ========================================= */
+   .recent-courses-section {
+    margin-top: 2.5rem;
+}
+
+.section-header-table {
+    margin-bottom: 1rem;
+}
+
+.table-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--primary-dark);
+}
+
+.table-container {
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow-x: auto; /* Permite scroll horizontal si el contenido desborda en móvil */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.courses-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 600px; /* Asegura que la tabla no se aplaste demasiado en tablets */
+}
+
+/* Encabezados */
+.courses-table th {
+    background-color: var(--bg-surface);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Celdas */
+.courses-table td {
+    padding: 1rem 1.5rem;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+/* Fila Alternada (Zebra Striping) */
+.courses-table tbody tr:nth-child(even) {
+    background-color: #F1F5F9; /* Gris muy claro */
+}
+
+.courses-table tbody tr:hover {
+    background-color: #E2E8F0; /* Feedback sutil al pasar el mouse */
+    transition: background-color 0.2s ease;
+}
+
+/* Tipografía específica para ciertas celdas */
+.course-name {
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+
+.progress-cell {
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+/* =========================================
+   8. BADGES DE ESTADO
+   ========================================= */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px; /* Pill shape */
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Azul para "En Progreso" */
+.badge-progress {
+    background-color: #DBEAFE;
+    color: #1E40AF;
+}
+
+/* Verde para "Completado" */
+.badge-completed {
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+
+/* Amarillo para "Pausado" */
+.badge-paused {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+/* =========================================
+   9. MEDIA QUERIES (Tabla Responsive)
+   ========================================= */
+/* Para pantallas móviles (menores a 768px) */
+@media screen and (max-width: 767px) {
+    .hide-on-mobile {
+        display: none;
+    }
+    
+    .courses-table {
+        min-width: 100%; /* Elimina la restricción en móviles pequeños */
+    }
+    
+    .courses-table th, 
+    .courses-table td {
+        padding: 0.75rem 1rem; /* Reduce el padding en móvil */
+    }
+}
+
+/* =========================================
+   ANIMACIÓN DEL BOTÓN HAMBURGUESA (||| a X)
+   ========================================= */
+   .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--primary-dark);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    transform-origin: center;
+}
+
+/* Estado Activo: Transformación a X */
+.menu-btn.is-active .hamburger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-btn.is-active .hamburger span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.menu-btn.is-active .hamburger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Asegurar la transición de 0.3s en el sidebar y overlay */
+.sidebar {
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-overlay {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* =========================================
+   MEDIA QUERIES (Ajustado a 768px)
+   ========================================= */
+@media screen and (min-width: 768px) {
+    .mobile-topbar {
+        display: none;
+    }
+
+    .close-btn-mobile {
+        display: none;
+    }
+
+    .sidebar {
+        transform: translateX(0); /* Sidebar visible en desktop */
+    }
+
+    .main-content {
+        margin-left: var(--sidebar-width);
+        padding: 2.5rem 3rem;
+    }
+}

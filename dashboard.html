@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | EduTrack</title>
+    <link rel="stylesheet" href="css/dashboard_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="mobile-topbar">
+        <button id="menu-toggle" class="menu-btn" aria-label="Alternar menú">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        
+        <span class="mobile-brand">EduTrack</span>
+        <div class="mobile-spacer"></div> </div>
+
+    <div class="dashboard-layout">
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="brand-logo-text">EduTrack.</h1>
+                <button id="close-sidebar" class="close-btn-mobile" aria-label="Cerrar menú">&times;</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            <span>Mis Rutas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <span>Catálogo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span>Certificados</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://placehold.co/40x40?text=U" alt="Avatar del usuario" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Estudiante</span>
+                        <span class="user-role">Frontend Dev</span>
+                    </div>
+                </div>
+                <button class="btn-logout" aria-label="Cerrar sesión">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    <span>Salir</span>
+                </button>
+            </div>
+        </aside>
+
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h2 class="greeting">¡Hola de nuevo! 👋</h2>
+                <p class="greeting-subtitle">Aquí está el resumen de tu progreso actual.</p>
+            </header>
+
+            <div class="dashboard-cards">
+                
+                <article class="stat-card">
+                    <div class="stat-header">
+                        <div class="icon-wrapper">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        </div>
+                        <h3 class="stat-title">Cursos Activos</h3>
+                    </div>
+                    <div class="stat-body">
+                        <p class="stat-value">3</p>
+                        <p class="stat-variation positive">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                            +1 vs mes anterior
+                        </p>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-header">
+                        <div class="icon-wrapper">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <h3 class="stat-title">Progreso Promedio</h3>
+                    </div>
+                    <div class="stat-body">
+                        <p class="stat-value">64%</p>
+                        <div class="progress-track" aria-label="Progreso del 64%" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-fill" style="width: 64%;"></div>
+                        </div>
+                        <p class="stat-variation positive">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                            +12% vs mes anterior
+                        </p>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-header">
+                        <div class="icon-wrapper">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                        </div>
+                        <h3 class="stat-title">Próximo Pago</h3>
+                    </div>
+                    <div class="stat-body">
+                        <p class="stat-value">Q 150.00</p>
+                        <p class="stat-date">Vence: 15 Jun, 2026</p>
+                        <p class="stat-variation neutral">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            Suscripción Pro
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+            <section class="recent-courses-section">
+                <div class="section-header-table">
+                    <h3 class="table-title">Historial de Aprendizaje</h3>
+                </div>
+                
+                <div class="table-container">
+                    <table class="courses-table">
+                        <thead>
+                            <tr>
+                                <th>Curso</th>
+                                <th class="hide-on-mobile">Instructor</th>
+                                <th>Progreso</th>
+                                <th class="hide-on-mobile">Fecha inicio</th>
+                                <th>Precio Q</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="course-name">JavaScript Avanzado y Manipulación del DOM</td>
+                                <td class="hide-on-mobile">Carlos Lazaro Butz Avila</td>
+                                <td class="progress-cell">80%</td>
+                                <td class="hide-on-mobile">10 Ene 2026</td>
+                                <td>Q 250.00</td>
+                                <td><span class="badge badge-progress">En progreso</span></td>
+                            </tr>
+                            <tr>
+                                <td class="course-name">Consumo de APIs: Proyecto TMDB</td>
+                                <td class="hide-on-mobile">Josué Ambrosi</td>
+                                <td class="progress-cell">100%</td>
+                                <td class="hide-on-mobile">05 Nov 2025</td>
+                                <td>Q 200.00</td>
+                                <td><span class="badge badge-completed">Completado</span></td>
+                            </tr>
+                            <tr>
+                                <td class="course-name">Python Fundamental y Lógica con Karel</td>
+                                <td class="hide-on-mobile">Edwin Quiroa</td>
+                                <td class="progress-cell">45%</td>
+                                <td class="hide-on-mobile">15 Mar 2026</td>
+                                <td>Q 320.00</td>
+                                <td><span class="badge badge-paused">Pausado</span></td>
+                            </tr>
+                            <tr>
+                                <td class="course-name">Full-Stack Web Bootcamp</td>
+                                <td class="hide-on-mobile">Marvin Rocael Ajanel Pú</td>
+                                <td class="progress-cell">15%</td>
+                                <td class="hide-on-mobile">20 May 2026</td>
+                                <td>Q 420.00</td>
+                                <td><span class="badge badge-progress">En progreso</span></td>
+                            </tr>
+                            <tr>
+                                <td class="course-name">Arquitectura CSS y HTML Semántico</td>
+                                <td class="hide-on-mobile">Alan David Quevedo de la Cruz</td>
+                                <td class="progress-cell">100%</td>
+                                <td class="hide-on-mobile">01 Sep 2025</td>
+                                <td>Q 175.00</td>
+                                <td><span class="badge badge-completed">Completado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            </main>
+    </div>
+
+    <script src="sidebar.js"></script>
+</body>
+</html>
