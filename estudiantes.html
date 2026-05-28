@@ -13,9 +13,15 @@
 </head>
 <body>
 
-    <header style="margin-bottom: 2rem;">
-        <h1 style="color: var(--primary-dark);">Gestión de Estudiantes</h1>
-        <p style="color: var(--text-muted);">Administra la base de datos de usuarios, sus planes y progresos.</p>
+    <header style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+        <div>
+            <h1 style="color: var(--primary-dark);">Gestión de Estudiantes</h1>
+            <p style="color: var(--text-muted);">Administra la base de datos de usuarios, sus planes y progresos.</p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <a href="dashboard.html" class="btn-cancel">Volver al Dashboard</a>
+            <button id="btn-logout-estudiantes" class="btn-save">Cerrar Sesión</button>
+        </div>
     </header>
 
     <section class="controls-bar">

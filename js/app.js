@@ -226,6 +226,17 @@ function setupEventListeners() {
     document.getElementById('btn-add-student').addEventListener('click', () => openModal());
     document.getElementById('btn-close-modal').addEventListener('click', closeModal);
     form.addEventListener('submit', handleFormSubmit);
+
+    // Evento para Cerrar Sesión desde estudiantes.html
+    const btnLogoutEstudiantes = document.getElementById('btn-logout-estudiantes');
+    if (btnLogoutEstudiantes) {
+        btnLogoutEstudiantes.addEventListener('click', () => {
+            if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+                localStorage.removeItem('edutrack_user');
+                window.location.href = 'index.html';
+            }
+        });
+    }
 }
 
 // =========================================
