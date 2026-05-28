@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Configurar un usuario predeterminado si no existe en el navegador
+    if (!localStorage.getItem('edutrack_user')) {
+        const defaultUser = { name: "Usuario Prueba", email: "prueba@edutrack.com" };
+        localStorage.setItem('edutrack_user', JSON.stringify(defaultUser));
+    }
+
     // 1. Selección de elementos del DOM
     const modal = document.getElementById('register-modal');
     const btnClose = document.getElementById('close-modal');
@@ -7,61 +13,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // Seleccionamos todos los botones que deberían abrir el registro
     // (Actualiza los href de tus botones en HTML para que coincidan o usen una clase específica)
     const registerTriggers = document.querySelectorAll('.btn-primary, .btn-large-primary');
+    const loginBtn = document.getElementById('login-btn');
 
-    // 2. Función para abrir el modal
-    const openModal = (e) => {
-        // Solo prevenimos el comportamiento por defecto si el botón es un link (etiqueta a)
-        if(e.target.tagName === 'A') {
-            e.preventDefault(); 
-        }
-        modal.classList.add('is-active');
-    };
+    // Solo ejecutamos la lógica del landing si esos elementos existen en la página actual
+    if (modal && btnClose && registerForm) {
+        // 2. Función para abrir el modal
+        const openModal = (e) => {
+            // Solo prevenimos el comportamiento por defecto si el botón es un link (etiqueta a)
+            if(e && e.target && e.target.tagName === 'A') {
+                e.preventDefault(); 
+            }
+            modal.classList.add('is-active');
+        };
 
-    // 3. Función para cerrar el modal
-    const closeModal = () => {
-        modal.classList.remove('is-active');
-        registerForm.reset(); // Limpia los inputs al cerrar
-    };
+        // 3. Función para cerrar el modal
+        const closeModal = () => {
+            modal.classList.remove('is-active');
+            registerForm.reset(); // Limpia los inputs al cerrar
+        };
 
-    // 4. Asignar eventos de apertura a los botones
-    registerTriggers.forEach(btn => {
-        btn.addEventListener('click', openModal);
-    });
+        // 4. Asignar eventos de apertura a los botones
+        registerTriggers.forEach(btn => {
+            // Evitamos sobreescribir el botón nativo de submit
+            if (btn.type !== 'submit') {
+                btn.addEventListener('click', openModal);
+            }
+        });
 
-    // 5. Asignar eventos de cierre
-    btnClose.addEventListener('click', closeModal);
+        // 5. Asignar eventos de cierre
+        btnClose.addEventListener('click', closeModal);
 
-    // Cerrar el modal si el usuario hace clic fuera del recuadro blanco
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
+        // Cerrar el modal si el usuario hace clic fuera del recuadro blanco
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Cerrar el modal con la tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+                closeModal();
+            }
+        });
+
+        // 6. Simular el CRUD / Envío del formulario
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Evita que la página se recargue
+
+            // Capturar los valores de los inputs
+            const userName = document.getElementById('reg-name').value;
+            const userEmail = document.getElementById('reg-email').value;
+
+            // Guardar o sobreescribir usuario en el localStorage
+            const newUser = { name: userName, email: userEmail };
+            localStorage.setItem('edutrack_user', JSON.stringify(newUser));
+
+            // Notificar al usuario y redirigir
+            alert(`¡Excelente decisión, ${userName}! Registro exitoso. Redirigiendo a tu espacio de trabajo...`);
             closeModal();
+            window.location.href = 'dashboard.html';
+        });
+        
+        // 7. Simular el Inicio de Sesión
+        if (loginBtn) {
+            loginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Buscar cuenta en el localStorage
+                const storedUser = localStorage.getItem('edutrack_user');
+                if (storedUser) {
+                    const user = JSON.parse(storedUser);
+                    alert(`¡Bienvenido de vuelta, ${user.name}!`);
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('No tienes ninguna cuenta registrada. Por favor, regístrate.');
+                    openModal(e); // Despliega la ventana de registro
+                }
+            });
         }
-    });
-
-    // Cerrar el modal con la tecla Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
-            closeModal();
-        }
-    });
-
-    // 6. Simular el CRUD / Envío del formulario
-    registerForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Evita que la página se recargue
-
-        // Capturar los valores de los inputs
-        const userName = document.getElementById('reg-name').value;
-        const userEmail = document.getElementById('reg-email').value;
-
-        // Aquí iría tu lógica asíncrona real (fetch a tu API / backend)
-        console.log('Nuevo registro interceptado:', { nombre: userName, email: userEmail });
-
-        // Simulamos una alerta de éxito
-        alert(`¡Excelente decisión, ${userName}! Hemos recibido tu correo (${userEmail}). Nos pondremos en contacto contigo pronto.`);
-
-        // Limpiamos y cerramos
-        closeModal();
-    });
+    }
 });
 
 // =========================================
@@ -85,11 +115,14 @@ const form = document.getElementById('student-form');
 // 3. INICIALIZACIÓN
 // =========================================
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadData();
-    populateCityFilter();
-    renderStudents(students);
-    initChart();
-    setupEventListeners();
+    // Solo ejecutamos esto si estamos en la página que tiene la tabla (estudiantes.html)
+    if (gridContainer) {
+        await loadData();
+        populateCityFilter();
+        renderStudents(students);
+        initChart();
+        setupEventListeners();
+    }
 });
 
 async function loadData() {
@@ -98,7 +131,7 @@ async function loadData() {
         students = JSON.parse(storedData);
     } else {
         // Utilizamos la función de validación que ya creaste para cargar el JSON
-        const result = await validarDatosEstudiantes('../JSON/ejemplo.json');
+        const result = await validarDatosEstudiantes('JSON/ejemplo.json');
         if (result && result.data) {
             students = result.data; // Carga los 35 registros de tu JSON
         } else {
