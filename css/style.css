@@ -1,0 +1,149 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-dark: #0F172A;
+    --primary-light: #1E293B;
+    --accent-green: #10B981;
+    --danger-red: #EF4444;
+    --warning-yellow: #F59E0B;
+    --bg-light: #F8FAFC;
+    --white: #FFFFFF;
+    --text-main: #334155;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --border-radius-md: 8px;
+    --transition: all 0.3s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-main); padding: 2rem; }
+
+/* =========================================
+   CONTROLES: BÚSQUEDA Y FILTROS
+   ========================================= */
+.controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    align-items: center;
+}
+
+.control-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    font-size: 0.95rem;
+}
+
+.control-input:focus {
+    outline: none;
+    border-color: var(--accent-green);
+}
+
+.btn-add {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-add:hover { background-color: var(--primary-light); }
+
+/* =========================================
+   GRID DE TARJETAS (ESTUDIANTES)
+   ========================================= */
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.student-card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: var(--transition);
+}
+
+.student-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.student-name { font-size: 1.15rem; font-weight: 700; color: var(--primary-dark); }
+.student-email { font-size: 0.85rem; color: var(--text-muted); }
+.student-detail { font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+
+/* Insignias de Plan */
+.badge { padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+.badge-premium { background-color: #FEF3C7; color: #B45309; }
+.badge-estándar { background-color: #E0E7FF; color: #4338CA; }
+.badge-básico { background-color: #F1F5F9; color: #475569; }
+
+/* Barra de Progreso */
+.progress-container { margin-top: 0.5rem; }
+.progress-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.25rem; }
+.progress-track { width: 100%; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent-green); transition: width 0.5s ease; }
+
+/* Botones de Acción */
+.card-actions { display: flex; gap: 0.5rem; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem; }
+.btn-action { flex: 1; padding: 0.5rem; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: var(--transition); color: var(--white); }
+.btn-edit { background-color: var(--warning-yellow); }
+.btn-delete { background-color: var(--danger-red); }
+.btn-action:hover { opacity: 0.8; }
+
+/* =========================================
+   MODAL Y FORMULARIO
+   ========================================= */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.7);
+    display: none; align-items: center; justify-content: center; z-index: 1000;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-content {
+    background: var(--white); padding: 2rem; border-radius: var(--border-radius-md);
+    width: 90%; max-width: 450px; box-shadow: var(--shadow-md);
+}
+
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.form-group input, .form-group select {
+    width: 100%; padding: 0.6rem; border: 1px solid var(--border-color); border-radius: 4px;
+}
+.modal-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.modal-actions button { flex: 1; padding: 0.75rem; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; }
+.btn-cancel { background: var(--border-color); color: var(--text-main); }
+.btn-save { background: var(--accent-green); color: var(--white); }
+
+/* =========================================
+   CONTENEDOR DEL GRÁFICO
+   ========================================= */
+.chart-section {
+    background: var(--white); padding: 1.5rem; border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md); border: 1px solid var(--border-color);
+}

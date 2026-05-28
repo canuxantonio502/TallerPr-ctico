@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Estudiantes | EduTrack</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header style="margin-bottom: 2rem;">
+        <h1 style="color: var(--primary-dark);">Gestión de Estudiantes</h1>
+        <p style="color: var(--text-muted);">Administra la base de datos de usuarios, sus planes y progresos.</p>
+    </header>
+
+    <section class="controls-bar">
+        <input type="text" id="filter-search" class="control-input" placeholder="Buscar por nombre o email...">
+        
+        <select id="filter-city" class="control-input">
+            <option value="all">Todas las ciudades</option>
+        </select>
+        
+        <select id="filter-plan" class="control-input">
+            <option value="all">Todos los planes</option>
+            <option value="básico">Básico</option>
+            <option value="estándar">Estándar</option>
+            <option value="premium">Premium</option>
+        </select>
+        
+        <button id="btn-add-student" class="btn-add">+ Agregar Estudiante</button>
+    </section>
+
+    <section class="chart-section" style="margin-bottom: 2rem;">
+        <canvas id="cityChart" height="80"></canvas>
+    </section>
+
+    <main class="students-grid" id="students-grid">
+        </main>
+
+    <div class="modal-overlay" id="student-modal">
+        <div class="modal-content">
+            <h2 id="modal-title" style="margin-bottom: 1.5rem; color: var(--primary-dark);">Agregar Estudiante</h2>
+            
+            <form id="student-form">
+                <div class="form-group">
+                    <label for="form-name">Nombre Completo</label>
+                    <input type="text" id="form-name" required placeholder="Ej. Carlos Mendoza">
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-email">Correo Electrónico</label>
+                    <input type="email" id="form-email" required placeholder="usuario@correo.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-city">Ciudad</label>
+                    <input type="text" id="form-city" required placeholder="Ej. Guatemala, Quetzaltenango...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-course">Curso Actual</label>
+                    <input type="text" id="form-course" required placeholder="Ej. JavaScript Avanzado">
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-progress">Progreso (%)</label>
+                    <input type="number" id="form-progress" required min="0" max="100" placeholder="0 - 100">
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-plan">Plan de Suscripción</label>
+                    <select id="form-plan" required>
+                        <option value="básico">Básico</option>
+                        <option value="estándar">Estándar</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="btn-close-modal" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-save">Guardar Datos</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/validacion.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>
