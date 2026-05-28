@@ -117,6 +117,18 @@ const form = document.getElementById('student-form');
 document.addEventListener('DOMContentLoaded', async () => {
     // Solo ejecutamos esto si estamos en la página que tiene la tabla (estudiantes.html)
     if (gridContainer) {
+        // Verificación de seguridad
+        const storedUser = localStorage.getItem('edutrack_user');
+        if (!storedUser) {
+            alert("Acceso denegado. Serás redirigido al inicio.");
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        // Actualizar datos del usuario en el sidebar
+        const user = JSON.parse(storedUser);
+        document.querySelectorAll('.user-name').forEach(el => el.textContent = user.name);
+
         await loadData();
         populateCityFilter();
         renderStudents(students);

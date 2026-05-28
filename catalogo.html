@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Estudiantes | EduTrack</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>Catálogo de Cursos | EduTrack</title>
     <link rel="stylesheet" href="css/dashboard_styles.css">
-    <link rel="stylesheet" href="css/style.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/catalogo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -45,13 +41,13 @@
                             <span>Mis Rutas</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a href="catalogo.html" class="nav-link">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                             <span>Catálogo</span>
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a href="estudiantes.html" class="nav-link">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                             <span>Estudiantes</span>
@@ -68,7 +64,7 @@
                         <span class="user-role">Frontend Dev</span>
                     </div>
                 </div>
-                <button id="btn-logout-estudiantes" class="btn-logout" aria-label="Cerrar sesión">
+                <button id="btn-logout-dashboard" class="btn-logout" aria-label="Cerrar sesión">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                     <span>Salir</span>
                 </button>
@@ -77,87 +73,12 @@
 
         <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-        <main class="main-content">
-            <header class="content-header">
-                <h2 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 0.25rem;">Gestión de Estudiantes</h2>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">Administra la base de datos de usuarios, sus planes y progresos.</p>
-            </header>
-
-    <section class="controls-bar">
-        <input type="text" id="filter-search" class="control-input" placeholder="Buscar por nombre o email...">
-        
-        <select id="filter-city" class="control-input">
-            <option value="all">Todas las ciudades</option>
-        </select>
-        
-        <select id="filter-plan" class="control-input">
-            <option value="all">Todos los planes</option>
-            <option value="básico">Básico</option>
-            <option value="estándar">Estándar</option>
-            <option value="premium">Premium</option>
-        </select>
-        
-        <button id="btn-add-student" class="btn-add">+ Agregar Estudiante</button>
-    </section>
-
-    <section class="chart-section" style="margin-bottom: 2rem;">
-        <canvas id="cityChart" height="80"></canvas>
-    </section>
-
-    <div class="students-grid" id="students-grid">
-        </div>
+        <main class="main-content" id="catalog-app">
+            <!-- El contenido se renderizará dinámicamente desde catalogo.js -->
         </main>
     </div>
 
-    <div class="modal-overlay" id="student-modal">
-        <div class="modal-content">
-            <h2 id="modal-title" style="margin-bottom: 1.5rem; color: var(--primary-dark);">Agregar Estudiante</h2>
-            
-            <form id="student-form">
-                <div class="form-group">
-                    <label for="form-name">Nombre Completo</label>
-                    <input type="text" id="form-name" required placeholder="Ej. Carlos Mendoza">
-                </div>
-                
-                <div class="form-group">
-                    <label for="form-email">Correo Electrónico</label>
-                    <input type="email" id="form-email" required placeholder="usuario@correo.com">
-                </div>
-                
-                <div class="form-group">
-                    <label for="form-city">Ciudad</label>
-                    <input type="text" id="form-city" required placeholder="Ej. Guatemala, Quetzaltenango...">
-                </div>
-                
-                <div class="form-group">
-                    <label for="form-course">Curso Actual</label>
-                    <input type="text" id="form-course" required placeholder="Ej. JavaScript Avanzado">
-                </div>
-                
-                <div class="form-group">
-                    <label for="form-progress">Progreso (%)</label>
-                    <input type="number" id="form-progress" required min="0" max="100" placeholder="0 - 100">
-                </div>
-                
-                <div class="form-group">
-                    <label for="form-plan">Plan de Suscripción</label>
-                    <select id="form-plan" required>
-                        <option value="básico">Básico</option>
-                        <option value="estándar">Estándar</option>
-                        <option value="premium">Premium</option>
-                    </select>
-                </div>
-                
-                <div class="modal-actions">
-                    <button type="button" id="btn-close-modal" class="btn-cancel">Cancelar</button>
-                    <button type="submit" class="btn-save">Guardar Datos</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <script src="js/sidebar.js"></script>
-    <script src="js/validacion.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/catalogo.js"></script>
 </body>
 </html>

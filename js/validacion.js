@@ -21,15 +21,6 @@ async function cargarJSON(url) {
     }
 }
 
-// Ejemplo de cómo llamarlo (asegúrate de que la ruta sea correcta desde donde lo ejecutes)
-cargarJSON('../JSON/ejemplo.json').then(datos => {
-    if (datos) {
-        // Aquí puedes ejecutar funciones adicionales pasándole los datos
-        // por ejemplo: renderizarTabla(datos);
-    }
-});
-
-
 async function validarDatosEstudiantes(jsonUrl) {
     try {
         // 1. Cargar el JSON
@@ -103,9 +94,3 @@ async function validarDatosEstudiantes(jsonUrl) {
         console.error("Error al obtener o procesar el JSON:", error);
     }
 }
-
-// Ejemplo de uso: Ejecutar una vez que el DOM cargue
-document.addEventListener('DOMContentLoaded', () => {
-    // Asegúrate de colocar la ruta correcta hacia tu JSON dependiendo desde dónde ejecutas el HTML
-    validarDatosEstudiantes('../JSON/ejemplo.json');
-});
