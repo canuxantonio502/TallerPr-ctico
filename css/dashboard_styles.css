@@ -224,10 +224,17 @@ body {
 /* =========================================
    5. ÁREA PRINCIPAL & TARJETAS
    ========================================= */
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .main-content {
     flex: 1;
     padding: 1.5rem;
     width: 100%;
+    /* Aplicamos la transición suave de carga a todas las páginas */
+    animation: pageFadeIn 0.4s ease-out forwards;
 }
 
 .content-header {

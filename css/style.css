@@ -18,7 +18,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-main); padding: 2rem; }
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-main); }
 
 /* =========================================
    CONTROLES: BÚSQUEDA Y FILTROS
@@ -166,4 +166,3 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); colo
     padding: 0.75rem;
     font-weight: 600;
 }
-
